@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MALWARE DETECTOR
+    
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">D</span>
+          <span>DeceptionTrace AI</span>
+        </div>
+
+        <nav class="nav">
+          <a href="#overview">Home</a>
+          <a href="#analysis">Analysis</a>
+          <a href="#patterns">Pattern Detection</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#reports">Reports</a>
+        </nav>
+
+        <a href="#scanner" class="nav-button">Get Started</a>
+      </header>
+
+      <main class="hero-section" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">DIGITAL DECEPTION INTELLIGENCE</p>
+          <h1>
+            UNRAVEL THE PATTERNS.
+            <span>REVEAL THE DECEPTION.</span>
+          </h1>
+          <p class="hero-text">
+            Analyse conversations, identify suspicious behavioural patterns and reconstruct the progression of potential digital deception using intelligent analysis.
+          </p>
+
+          <div class="cta-row">
+            <a href="#scanner" class="primary-btn">Analyse Conversation</a>
+            <a href="#analysis" class="secondary-btn">Explore Platform</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Conversation intelligence visualization">
+          <div class="visual-glow"></div>
+          <div class="conversation-visual">
+            <div class="visual-core"></div>
+            <div class="signal signal-a"></div>
+            <div class="signal signal-b"></div>
+            <div class="signal signal-c"></div>
+            <div class="signal signal-d"></div>
+            <div class="node node-1">A</div>
+            <div class="node node-2">B</div>
+            <div class="node node-3">C</div>
+            <div class="node node-4">D</div>
+            <div class="message-pill message-pill-left">Context drift</div>
+            <div class="message-pill message-pill-right">Risk pattern</div>
+          </div>
+        </div>
+      </main>
+
+      <div class="brand-strip">
+        <div>Threat pattern review</div>
+        <div>Conversation mapping</div>
+        <div>Signal tracking</div>
+        <div>Behavioral analysis</div>
+      </div>
+
+      <section class="analysis-panel" id="analysis">
+        <div class="analysis-copy">
+          <p class="mini-label">Purpose-built intelligence</p>
+          <h2>Conversation intelligence & digital deception analysis system.</h2>
+        </div>
+
+        <div class="analysis-card">
+          <p>
+            DeceptionTrace AI helps security teams reconstruct conversations, map behavioural shifts,
+            and identify sequences that resemble manipulative or deceptive digital activity.
+          </p>
+        </div>
+      </section>
+
+      <section class="services-section" id="scanner">
+        <div class="section-heading">
+          <p class="mini-label">Platform workflow</p>
+          <h2>Malware & deception analysis tools</h2>
+        </div>
+
+        <div class="three-panel-layout">
+          <aside class="panel dashboard-panel">
+            <div class="panel-header">
+              <span class="panel-tag">Dashboard</span>
+              <h3>Behavior overview</h3>
+            </div>
+
+            <ul class="feature-list">
+              <li>Hash checking</li>
+              <li>Antivirus signature scanning</li>
+              <li>Static file analysis</li>
+              <li>URL reputation checking</li>
+              <li>Behavioral risk interpretation</li>
+            </ul>
+          </aside>
+
+          <aside class="panel upload-panel">
+            <div class="panel-header">
+              <span class="panel-tag">File input</span>
+              <h3>Upload scanner</h3>
+            </div>
+
+            <form id="uploadForm" enctype="multipart/form-data">
+              <label class="upload-box" for="fileInput">
+                <input id="fileInput" type="file" name="file" />
+                <span>Choose file</span>
+              </label>
+
+              <div class="upload-state-row">
+                <div class="upload-state" id="uploadState">No file uploaded yet</div>
+                <button type="button" class="remove-file-btn" id="removeFileBtn" aria-label="Remove selected file">×</button>
+              </div>
+              <button type="submit">Scan now</button>
+            </form>
+          </aside>
+
+          <aside class="panel url-panel">
+            <div class="panel-header">
+              <span class="panel-tag">URL input</span>
+              <h3>Link analysis</h3>
+            </div>
+
+            <div class="link-box">
+              <label for="linkInput">Paste a direct link</label>
+              <input id="linkInput" type="url" name="link" placeholder="https://example.com/sample.exe" />
+            </div>
+
+            <div class="url-note">Use a direct downloadable URL for the fastest review.</div>
+          </aside>
+        </div>
+      </section>
+
+      <div id="status" class="status hidden"></div>
+
+      <section id="results" class="results hidden">
+        <div class="summary-card">
+          <div>
+            <p class="label">File</p>
+            <h2 id="fileName">-</h2>
+          </div>
+          <div class="risk-pill" id="riskLevel">Low Risk</div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="label">Size</span>
+            <strong id="fileSize">-</strong>
+          </div>
+          <div class="meta-item">
+            <span class="label">Type</span>
+            <strong id="fileType">-</strong>
+          </div>
+          <div class="meta-item">
+            <span class="label">Malware chance</span>
+            <strong id="malwareChance">-</strong>
+          </div>
+          <div class="meta-item">
+            <span class="label">Score</span>
+            <strong id="score">-</strong>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <h3>About this file</h3>
+          <p id="briefSummaryText"></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Assessment</h3>
+          <p id="summaryText"></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Detection engine</h3>
+          <p id="detectionEngineText"></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Threat categories</h3>
+          <div id="threatCategories" class="tag-list"></div>
+        </div>
+
+        <div class="summary-box">
+          <h3>Content identification</h3>
+          <p id="contentIdentificationText"></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Cybersecurity verdict</h3>
+          <p class="verdict-label" id="assistantVerdict">UNKNOWN</p>
+          <p id="assistantAnalysisText"></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Recommendation</h3>
+          <p id="recommendationText"></p>
+        </div>
+
+        <div class="findings-box">
+          <h3>Findings</h3>
+          <ul id="findingsList"></ul>
+        </div>
+      </section>
+
+      <section class="service-cards" id="patterns">
+        <div class="service-card accent-card">
+          <div class="card-icon">01</div>
+          <h3>Pattern detection</h3>
+          <p>Map suspicious conversation sequences and behavioural shifts across digital interactions.</p>
+        </div>
+
+        <div class="service-card" id="timeline">
+          <div class="card-icon">02</div>
+          <h3>Timeline reconstruction</h3>
+          <p>Rebuild the progression of events to understand how manipulation or deception develops.</p>
+        </div>
+
+        <div class="service-card" id="reports">
+          <div class="card-icon">03</div>
+          <h3>Clear reporting</h3>
+          <p>Summarize findings into structured reports suitable for analysis, review and decision making.</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const form = document.getElementById('uploadForm');
+      const fileInput = document.getElementById('fileInput');
+      const uploadStateEl = document.getElementById('uploadState');
+      const removeFileBtn = document.getElementById('removeFileBtn');
+      const statusEl = document.getElementById('status');
+      const resultsEl = document.getElementById('results');
+
+      function updateUploadState() {
+        const selected = fileInput.files[0];
+        uploadStateEl.textContent = selected ? `File selected: ${selected.name}` : 'No file uploaded yet';
+        uploadStateEl.classList.toggle('active', !!selected);
+        removeFileBtn.style.visibility = selected ? 'visible' : 'hidden';
+      }
+
+      fileInput.addEventListener('change', updateUploadState);
+
+      removeFileBtn.addEventListener('click', () => {
+        fileInput.value = '';
+        updateUploadState();
+      });
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const file = fileInput.files[0];
+        const link = document.getElementById('linkInput').value.trim();
+
+        if (!file && !link) {
+          showStatus('Please select a file or provide a valid URL.', 'error');
+          return;
+        }
+
+        showStatus(file ? 'Scanning uploaded file...' : 'Downloading and scanning link...', 'loading');
+        resultsEl.classList.add('hidden');
+
+        const formData = new FormData();
+        if (file) {
+          formData.append('file', file);
+        }
+        if (link) {
+          formData.append('link', link);
+        }
+
+        try {
+          const response = await fetch('/api/scan', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const result = await response.json();
+          if (!response.ok) {
+            throw new Error(result.error || 'Scan failed.');
+          }
+
+          renderResult(result);
+          showStatus('Scan completed successfully.', 'success');
+        } catch (error) {
+          showStatus(error.message || 'Something went wrong.', 'error');
+        }
+      });
+
+      function renderResult(result) {
+        const riskLevel = result.risk_level || 'Unknown';
+        const malwareChance = result.malware_probability ?? result.malware_chance ?? result.score ?? 0;
+        const verdict = result.classification || result.verdict || result.assistant_verdict || 'UNKNOWN';
+        const contentId = result.content_identification || {};
+        const security = result.security_analysis || {};
+
+        document.getElementById('fileName').textContent = result.file_name || 'Unknown';
+        document.getElementById('riskLevel').textContent = riskLevel;
+        document.getElementById('riskLevel').className = 'risk-pill ' + (riskLevel || '').toLowerCase().replace(/\s+/g, '-');
+        document.getElementById('fileSize').textContent = formatBytes(result.file_size || 0);
+        document.getElementById('fileType').textContent = result.extension || 'Unknown';
+        document.getElementById('malwareChance').textContent = `${Number(malwareChance)}%`;
+        document.getElementById('score').textContent = `${result.score ?? 0}/100`;
+        document.getElementById('briefSummaryText').textContent = result.brief_summary || 'No brief description available.';
+        document.getElementById('summaryText').textContent = result.summary || 'No summary available.';
+        document.getElementById('detectionEngineText').textContent = result.detection_engine_summary || (Array.isArray(result.detection_engine) ? result.detection_engine.join(', ') : 'No detection engine details available.');
+
+        if (contentId.website_name || contentId.domain || contentId.website_category) {
+          document.getElementById('contentIdentificationText').textContent =
+            `Website: ${contentId.website_name || 'Unknown'} | Domain: ${contentId.domain || 'Unknown'} | Category: ${contentId.website_category || 'Unknown'} | Purpose: ${contentId.website_purpose || 'Unknown'} | HTTPS: ${contentId.https_status || 'Unknown'} | Redirect: ${contentId.redirect_information || 'Unknown'}`;
+        } else {
+          document.getElementById('contentIdentificationText').textContent =
+            `File name: ${contentId.file_name || result.file_name || 'Unknown'} | Actual type: ${contentId.actual_file_type || result.extension || 'Unknown'} | Category: ${contentId.file_category || 'Other or unknown'} | Purpose: ${contentId.file_purpose || 'Unknown'} | Integrity: ${contentId.file_integrity || 'Unknown'} | Risks: ${contentId.potential_risks || 'Unknown'}`;
+        }
+
+        const securityText = security.assistant_analysis || security.summary || result.assistant_analysis || result.analysis || 'No cybersecurity verdict available.';
+        document.getElementById('assistantVerdict').textContent = security.classification || verdict;
+        document.getElementById('assistantAnalysisText').textContent = securityText;
+        document.getElementById('recommendationText').textContent = security.recommendation || result.recommendation || 'No recommendation available.';
+
+        const tagList = document.getElementById('threatCategories');
+        tagList.innerHTML = '';
+        const categories = Array.isArray(result.threat_categories) ? result.threat_categories : [];
+        categories.forEach((category) => {
+          const badge = document.createElement('span');
+          badge.className = 'tag';
+          badge.textContent = category.replace(/_/g, ' ');
+          tagList.appendChild(badge);
+        });
+
+        const findingsList = document.getElementById('findingsList');
+        findingsList.innerHTML = '';
+        (result.findings || []).forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          findingsList.appendChild(li);
+        });
+
+        resultsEl.classList.remove('hidden');
+      }
+
+      function formatBytes(bytes) {
+        if (!bytes) return '0 B';
+        const units = ['B', 'KB', 'MB', 'GB'];
+        let value = bytes;
+        let unitIndex = 0;
+        while (value >= 1024 && unitIndex < units.length - 1) {
+          value /= 1024;
+          unitIndex += 1;
+        }
+        return `${value.toFixed(1)} ${units[unitIndex]}`;
+      }
+
+      function showStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.className = `status ${type}`;
+        statusEl.classList.remove('hidden');
+      }
+    </script>
+  </body>
+</html>
